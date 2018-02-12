@@ -1,0 +1,7 @@
+---
+
+# Python
+- include: python.yml
+
+# PyCharm CE
+- include: pycharm.yml
