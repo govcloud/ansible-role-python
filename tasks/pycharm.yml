@@ -62,7 +62,7 @@
   become: yes
   become_user: "{{ general.user }}"
   file:
-    path: /home/{{ general.user }}/.PyCharmCE2016.3/config/options
+    path: /home/{{ general.user }}/.PyCharmCE2017.3/config/options
     state: directory
   tags:
     - configuration
@@ -74,7 +74,7 @@
   become_user: "{{ general.user }}"
   template:
     src: "templates/options.xml.j2"
-    dest: /home/{{ general.user }}/.PyCharmCE2016.3/config/options/options.xml
+    dest: /home/{{ general.user }}/.PyCharmCE2017.3/config/options/options.xml
     owner: "{{ general.user }}"
     mode: 0644
   tags:
