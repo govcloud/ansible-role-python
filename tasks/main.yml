@@ -1,4 +1,9 @@
 ---
+# pip
+- name: Upgrade pip
+  pip:
+    name: pip
+    extra_args: --upgrade
 
 # Python
 - include: python.yml
