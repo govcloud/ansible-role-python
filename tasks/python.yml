@@ -17,6 +17,7 @@
     - sqlite-devel
     - readline-devel
     - openssl-devel
+    - python-devel
 
 # http://hakunin.com/six-ansible-practices
 - name: ensure github.com is a known host
