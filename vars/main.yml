@@ -1,0 +1,3 @@
+---
+jinja_tgz: '{{jinja_name}}.tar.gz'
+jinja_checksum: '{{jinja_checksums[jinja_ver][jinja_platform]}}'

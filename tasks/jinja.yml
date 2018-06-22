@@ -1,0 +1,50 @@
+---
+- name: check for installation of jinja
+  become: yes
+  stat:
+    path: "/usr/share/python/{{ jinja_fullname }}"
+  changed_when: false
+  register: jinja_dir
+
+- when: not jinja_dir.stat.exists
+  block:
+    - name: download...
+      become: yes
+      get_url:
+        url: 'https://github.com/pallets/jinja/releases/download/2.10/Jinja2-2.10.tar.gz'
+        dest: "/tmp/{{ jinja_tgz }}"
+        checksum: "{{ jinja_checksum }}"
+        mode: 0644
+
+    - name: make install dir
+      become: yes
+      file:
+        path: '/usr/share/python'
+        state: directory
+        mode: 0755
+
+    - name: unarchive
+      become: yes
+      unarchive:
+        copy: no
+        src: "/tmp/{{ jinja_tgz }}"
+        dest: '/usr/share/python'
+        creates: "/usr/share/python/{{ jinja_fullname }}"
+
+    - name: compile jinja2
+      become: yes
+      shell: sudo python setup.py install
+      args:
+        chdir: "/usr/share/python/{{ jinja_fullname }}"
+        executable: /bin/bash
+
+    - name: show jinja2 version
+      become: yes
+      shell: "pip show Jinja2"
+
+  always:
+    - name: cleanup...
+      become: yes
+      file:
+        path: "/tmp/{{ jinja_tgz }}"
+        state: absent
