@@ -87,6 +87,6 @@
 - name: virtualenv install
   become: yes
   become_user: "{{ general.user }}"
-  shell: ". {{ HOME }}/.bash_profile && pip install virtualenv"
+  shell: ". {{ HOME }}/.bash_profile && pip install virtualenv --user"
 
 - include: python3.yml
