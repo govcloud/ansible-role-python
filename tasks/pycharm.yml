@@ -45,6 +45,13 @@
     - pycharm
     - pycharm-install
 
+- name: create (desktop) directory
+  become: yes
+  become_user: "{{ general.user }}"
+  file:
+    path: "/home/{{ general.user }}/Desktop"
+    state: directory
+
 - name: install shortcut
   become: yes
   become_user: "{{ general.user }}"
